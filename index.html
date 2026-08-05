@@ -449,6 +449,7 @@
             border-bottom: 1px dashed rgba(250, 204, 21, 0.3);
         }
 
+        /* ===== СТИЛИ ДЛЯ УВЕДОМЛЕНИЯ ===== */
         .toast {
             position: fixed;
             top: 100px;
@@ -762,7 +763,7 @@
     <div class="container">
         <h2 class="section-title">Запись <span>онлайн</span></h2>
         <div class="form-box">
-            <form action="https://script.google.com/macros/s/AKfycbzC53_TiT3YZZRdDFVIYoQALqnw6hprHWDXa3fVn11sMguTCS5I5T22f5CKCXGUJ-_Gtg/exec" method="POST" id="bookingForm">
+            <form action="https://script.google.com/macros/s/AKfycbzC53_TiT3YZZRdDFVIYoQALqnw6hprHWDXa3fVn11sMguTCS5I5T22f5CKCXGUJ-_Gtg/exec" method="POST" id="bookingForm" target="_self">
                 <div class="field-group">
                     <label>👤 Ваше имя</label>
                     <input type="text" name="Имя" placeholder="Например: Рафаэль" required>
@@ -807,7 +808,10 @@
                     <input type="hidden" name="Время" id="selectedTime" required>
                 </div>
 
-                <button type="submit" class="btn-submit">✅ Записаться</button>
+                <!-- Скрытое поле для редиректа -->
+                <input type="hidden" name="_redirect" value="https://islam1280.github.io/Rafael_site/?success=true">
+
+                <button type="submit" class="btn-submit" id="submitBtn">✅ Записаться</button>
                 <div class="form-footnote">
                     Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки данных</a>
                 </div>
@@ -826,6 +830,7 @@
     </div>
 </footer>
 
+<!-- ===== ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ ===== -->
 <div id="successToast" class="toast">
     <span class="toast-icon">✅</span>
     <div class="toast-title">Вы успешно записались!</div>
@@ -838,10 +843,9 @@
 <script>
     // ===== НАСТРОЙКА: ВАШ URL ИЗ APPS SCRIPT =====
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzC53_TiT3YZZRdDFVIYoQALqnw6hprHWDXa3fVn11sMguTCS5I5T22f5CKCXGUJ-_Gtg/exec';
-
-    // ===== ЗАГРУЗКА ЗАНЯТЫХ СЛОТОВ ИЗ GOOGLE ТАБЛИЦЫ =====
     let bookedSlots = [];
 
+    // ===== ЗАГРУЗКА ЗАНЯТЫХ СЛОТОВ ИЗ GOOGLE ТАБЛИЦЫ =====
     async function loadBookedSlots() {
         try {
             const response = await fetch(SCRIPT_URL);
@@ -856,13 +860,27 @@
         }
     }
 
+    // ===== ПОКАЗ УВЕДОМЛЕНИЯ =====
+    function showToast() {
+        const toast = document.getElementById('successToast');
+        toast.classList.add('show');
+        // Автоматически скрыть через 5 секунд
+        setTimeout(closeToast, 5000);
+    }
+
+    function closeToast() {
+        document.getElementById('successToast').classList.remove('show');
+    }
+
     // ===== ГЕНЕРАЦИЯ ИНТЕРФЕЙСА =====
     document.addEventListener('DOMContentLoaded', async function () {
-        // Показываем уведомление, если запись успешна
-        if (window.location.hash === '#success') {
-            document.getElementById('successToast').classList.add('show');
-            setTimeout(closeToast, 30000);
-            history.replaceState(null, null, window.location.pathname);
+        // Проверяем, нужно ли показать уведомление об успехе
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            // Убираем параметр из URL, чтобы при обновлении уведомление не появлялось
+            const cleanUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState(null, null, cleanUrl);
+            showToast();
         }
 
         // Загружаем занятые слоты из таблицы
@@ -988,23 +1006,30 @@
 
         updateTimeSlots();
 
-        // ===== ПРИ ОТПРАВКЕ ФОРМЫ — ОБНОВЛЯЕМ СПИСОК ЗАНЯТЫХ =====
-        document.getElementById('bookingForm').addEventListener('submit', function() {
+        // ===== ПРИ ОТПРАВКЕ ФОРМЫ =====
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            // Получаем выбранные данные
             const day = selectedDay.value;
             const month = selectedMonth.value;
             const time = selectedTime.value;
-            if (day && month && time) {
-                const slotKey = `${day} ${month} ${time}`;
-                if (!bookedSlots.includes(slotKey)) {
-                    bookedSlots.push(slotKey);
-                }
+
+            // Проверяем, что всё выбрано
+            if (!day || !month || !time) {
+                e.preventDefault(); // Останавливаем отправку
+                alert('Пожалуйста, выберите день, месяц и время!');
+                return;
             }
+
+            // Добавляем слот в список занятых (для мгновенного обновления на странице)
+            const slotKey = `${day} ${month} ${time}`;
+            if (!bookedSlots.includes(slotKey)) {
+                bookedSlots.push(slotKey);
+            }
+
+            // Отправляем форму (она уже имеет action с URL скрипта)
+            // После отправки форма перенаправит на страницу с ?success=true
         });
     });
-
-    function closeToast() {
-        document.getElementById('successToast').classList.remove('show');
-    }
 </script>
 
 </body>
