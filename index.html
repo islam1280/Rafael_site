@@ -221,7 +221,7 @@
         }
 
         .form-box .field-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .form-box label {
@@ -229,11 +229,12 @@
             font-size: 14px;
             font-weight: 600;
             color: #94a3b8;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
 
-        .form-box input {
+        .form-box input,
+        .form-box textarea {
             width: 100%;
             padding: 15px 20px;
             border: 2px solid rgba(255,255,255,0.06);
@@ -242,13 +243,22 @@
             transition: 0.3s;
             background: rgba(15, 23, 42, 0.6);
             color: #e2e8f0;
+            font-family: inherit;
         }
 
-        .form-box input::placeholder {
+        .form-box textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 200px;
+        }
+
+        .form-box input::placeholder,
+        .form-box textarea::placeholder {
             color: #64748b;
         }
 
-        .form-box input:focus {
+        .form-box input:focus,
+        .form-box textarea:focus {
             border-color: #facc15;
             outline: none;
             box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.1);
@@ -636,7 +646,7 @@
     <div class="container">
         <h2 class="section-title">Прайс-лист <span>на услуги</span></h2>
 
-        <h3 style="margin-bottom: 12px; font-size: 22px; color: #facc15;">🚗 Легковой автомобиль -- полный перекид</h3>
+        <h3 style="margin-bottom: 12px; font-size: 22px; color: #facc15;">🚗 Легковой автомобиль — полный перекид</h3>
         <div class="price-table-wrapper">
             <table class="price-table">
                 <thead><tr><th>Радиус</th><th>Цена (₽)</th></tr></thead>
@@ -652,7 +662,7 @@
             </table>
         </div>
 
-        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #facc15;">🚙 Кроссоверы и внедорожники -- полный перекид</h3>
+        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #facc15;">🚙 Кроссоверы и внедорожники — полный перекид</h3>
         <div class="price-table-wrapper">
             <table class="price-table">
                 <thead><tr><th>Радиус</th><th>Цена (₽)</th></tr></thead>
@@ -688,7 +698,8 @@
                 </tbody>
             </table>
         </div>
-         <h3 style="margin: 40px 0 12px; font-size: 22px; color: #facc15;">🔧 Детализация услуг (кроссоверы/внедорожники)</h3>
+
+        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #facc15;">🔧 Детализация услуг (кроссоверы/внедорожники)</h3>
         <div class="price-table-wrapper">
             <table class="price-table">
                 <thead>
@@ -726,7 +737,7 @@
         </div>
 
         <div class="price-note">
-            <p>📌 <strong>Подкачка</strong> -- 25 ₽ за колесо &nbsp;|&nbsp; <strong>Аренда домкрата</strong> -- 100 ₽</p>
+            <p>📌 <strong>Подкачка</strong> — 25 ₽ за колесо &nbsp;|&nbsp; <strong>Аренда домкрата</strong> — 100 ₽</p>
             <p style="margin-top: 6px; font-size: 14px;">* Цены действительны на <strong>2026 год</strong></p>
         </div>
     </div>
@@ -751,7 +762,8 @@
     <div class="container">
         <h2 class="section-title">Запись <span>онлайн</span></h2>
         <div class="form-box">
-            <form action="https://formsubmit.co/baktigareevislam@gmail.com" method="POST" id="bookingForm">
+            <!-- ⬇️ ЗДЕСЬ ВСТАВЬТЕ ВАШ URL ИЗ APPS SCRIPT ⬇️ -->
+            <form action="ВАШ_URL_СКРИПТА" method="POST" id="bookingForm">
                 <div class="field-group">
                     <label>👤 Ваше имя</label>
                     <input type="text" name="Имя" placeholder="Например: Рафаэль" required>
@@ -765,6 +777,11 @@
                 <div class="field-group">
                     <label>🚗 Автомобиль</label>
                     <input type="text" name="Автомобиль" placeholder="Марка и модель" required>
+                </div>
+
+                <div class="field-group">
+                    <label>📝 Описание работы</label>
+                    <textarea name="Описание" placeholder="Например: замена резины, ремонт прокола, балансировка..."></textarea>
                 </div>
 
                 <div class="field-group">
@@ -787,14 +804,9 @@
                 <div class="field-group">
                     <label>🕐 Выберите время</label>
                     <div class="time-grid" id="timeGrid"></div>
-                    <div class="time-hint">⏳ Доступные слоты -- <span>каждые 30 минут</span></div>
+                    <div class="time-hint">⏳ Доступные слоты — <span>каждые 30 минут</span></div>
                     <input type="hidden" name="Время" id="selectedTime" required>
                 </div>
-
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="Новая запись на шиномонтаж У Рафаэля!">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://islam1280.github.io/Rafael_site/#success">
 
                 <button type="submit" class="btn-submit">✅ Записаться</button>
                 <div class="form-footnote">
@@ -807,7 +819,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p>© 2026 У Рафаэля -- Шиномонтаж в Затоне, Уфа</p>
+        <p>© 2026 У Рафаэля — Шиномонтаж в Затоне, Уфа</p>
         <p style="margin-top: 5px;">
             <a href="https://2gis.ru/ufa/geo/70000001080481052/55.848522,54.794684" target="_blank">2ГИС</a> &nbsp;|&nbsp;
             <a href="tel:+79297554585">+7 (929) 755-45-85</a>
@@ -825,14 +837,37 @@
 </div>
 
 <script>
-    const bookedSlots = [];
+    // ===== НАСТРОЙКА: ВАШ URL ИЗ APPS SCRIPT =====
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnfa_fWPtvGFAGz0T0y21iF6MGTXv7OR9brzqyv-UIO-nVdFDA3KmZt6OTrSvrvmmKHQ/exec'; // Вставьте сюда ваш URL
 
-    document.addEventListener('DOMContentLoaded', function () {
+    // ===== ЗАГРУЗКА ЗАНЯТЫХ СЛОТОВ ИЗ GOOGLE ТАБЛИЦЫ =====
+    let bookedSlots = [];
+
+    async function loadBookedSlots() {
+        try {
+            const response = await fetch(SCRIPT_URL);
+            const data = await response.json();
+            if (data.success) {
+                bookedSlots = data.bookedSlots || [];
+            } else {
+                console.error('Ошибка загрузки:', data.error);
+            }
+        } catch (error) {
+            console.error('Ошибка соединения:', error);
+        }
+    }
+
+    // ===== ГЕНЕРАЦИЯ ИНТЕРФЕЙСА =====
+    document.addEventListener('DOMContentLoaded', async function () {
+        // Показываем уведомление, если запись успешна
         if (window.location.hash === '#success') {
             document.getElementById('successToast').classList.add('show');
             setTimeout(closeToast, 30000);
             history.replaceState(null, null, window.location.pathname);
         }
+
+        // Загружаем занятые слоты из таблицы
+        await loadBookedSlots();
 
         const dayGrid = document.getElementById('dayGrid');
         const monthGrid = document.getElementById('monthGrid');
@@ -846,6 +881,7 @@
 
         const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
+        // Генерация дней
         for (let d = 1; d <= 31; d++) {
             const div = document.createElement('div');
             div.className = 'date-option';
@@ -862,6 +898,7 @@
             dayGrid.appendChild(div);
         }
 
+        // Генерация месяцев
         months.forEach(month => {
             const div = document.createElement('div');
             div.className = 'date-option';
@@ -877,6 +914,7 @@
             monthGrid.appendChild(div);
         });
 
+        // Генерация времени
         const times = [];
         for (let h = 8; h <= 20; h++) {
             for (let m = 0; m < 60; m += 30) {
@@ -905,6 +943,7 @@
             }
 
             let bookedCount = 0;
+            const totalSlots = times.length;
 
             times.forEach(time => {
                 const div = document.createElement('div');
@@ -933,7 +972,7 @@
                 timeGrid.appendChild(div);
             });
 
-            const totalSlots = times.length;
+            // Обновляем статус дня (полностью занят или нет)
             const dayElements = document.querySelectorAll('#dayGrid .date-option');
             dayElements.forEach(el => {
                 const dayNum = el.dataset.day;
@@ -949,6 +988,19 @@
         }
 
         updateTimeSlots();
+
+        // ===== ПРИ ОТПРАВКЕ ФОРМЫ — ОБНОВЛЯЕМ СПИСОК ЗАНЯТЫХ =====
+        document.getElementById('bookingForm').addEventListener('submit', function() {
+            const day = selectedDay.value;
+            const month = selectedMonth.value;
+            const time = selectedTime.value;
+            if (day && month && time) {
+                const slotKey = `${day} ${month} ${time}`;
+                if (!bookedSlots.includes(slotKey)) {
+                    bookedSlots.push(slotKey);
+                }
+            }
+        });
     });
 
     function closeToast() {
