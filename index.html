@@ -379,6 +379,26 @@
             color: #fca5a5;
             cursor: not-allowed;
             opacity: 0.6;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* ===== НАДПИСЬ "ЗАНЯТО" НАД КРАСНЫМ СЛОТОМ ===== */
+        .time-option.booked::before {
+            content: "Занято";
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #dc2626;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            opacity: 0.9;
         }
 
         .time-option.booked::after {
@@ -449,7 +469,7 @@
             border-bottom: 1px dashed rgba(250, 204, 21, 0.3);
         }
 
-        /* ===== СТИЛИ ДЛЯ УВЕДОМЛЕНИЯ ===== */
+        /* ===== ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ ОБ УСПЕХЕ ===== */
         .toast {
             position: fixed;
             top: 100px;
@@ -763,7 +783,8 @@
     <div class="container">
         <h2 class="section-title">Запись <span>онлайн</span></h2>
         <div class="form-box">
-            <form action="https://script.google.com/macros/s/AKfycbzC53_TiT3YZZRdDFVIYoQALqnw6hprHWDXa3fVn11sMguTCS5I5T22f5CKCXGUJ-_Gtg/exec" method="POST" id="bookingForm" target="_self">
+            <!-- ===== ФОРМА С ПРАВИЛЬНЫМ РЕДИРЕКТОМ ===== -->
+            <form action="https://script.google.com/macros/s/AKfycbzC53_TiT3YZZRdDFVIYoQALqnw6hprHWDXa3fVn11sMguTCS5I5T22f5CKCXGUJ-_Gtg/exec" method="POST" id="bookingForm">
                 <div class="field-group">
                     <label>👤 Ваше имя</label>
                     <input type="text" name="Имя" placeholder="Например: Рафаэль" required>
@@ -804,14 +825,14 @@
                 <div class="field-group">
                     <label>🕐 Выберите время</label>
                     <div class="time-grid" id="timeGrid"></div>
-                    <div class="time-hint">⏳ Доступные слоты — <span>каждые 30 минут</span></div>
+                    <div class="time-hint">⏳ Доступные слоты — <span>каждые 30 минут</span> (красные — уже заняты)</div>
                     <input type="hidden" name="Время" id="selectedTime" required>
                 </div>
 
-                <!-- Скрытое поле для редиректа -->
+                <!-- ===== СКРЫТЫЕ ПОЛЯ ДЛЯ РЕДИРЕКТА ===== -->
                 <input type="hidden" name="_redirect" value="https://islam1280.github.io/Rafael_site/?success=true">
 
-                <button type="submit" class="btn-submit" id="submitBtn">✅ Записаться</button>
+                <button type="submit" class="btn-submit">✅ Записаться</button>
                 <div class="form-footnote">
                     Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки данных</a>
                 </div>
@@ -1008,14 +1029,12 @@
 
         // ===== ПРИ ОТПРАВКЕ ФОРМЫ =====
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            // Получаем выбранные данные
             const day = selectedDay.value;
             const month = selectedMonth.value;
             const time = selectedTime.value;
 
-            // Проверяем, что всё выбрано
             if (!day || !month || !time) {
-                e.preventDefault(); // Останавливаем отправку
+                e.preventDefault();
                 alert('Пожалуйста, выберите день, месяц и время!');
                 return;
             }
@@ -1025,9 +1044,6 @@
             if (!bookedSlots.includes(slotKey)) {
                 bookedSlots.push(slotKey);
             }
-
-            // Отправляем форму (она уже имеет action с URL скрипта)
-            // После отправки форма перенаправит на страницу с ?success=true
         });
     });
 </script>
