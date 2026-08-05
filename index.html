@@ -13,15 +13,18 @@
         }
 
         body {
-            background: #f4f7fc;
-            color: #1e293b;
+            background: #0f172a;
+            color: #e2e8f0;
         }
 
         .header {
-            background: #0b2b40;
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .container {
@@ -42,6 +45,7 @@
             font-size: 28px;
             font-weight: 800;
             letter-spacing: 1px;
+            color: white;
         }
         .logo span {
             color: #facc15;
@@ -49,8 +53,9 @@
         .logo small {
             font-size: 14px;
             font-weight: 400;
-            opacity: 0.8;
+            opacity: 0.6;
             display: block;
+            color: #94a3b8;
         }
 
         .phone {
@@ -61,54 +66,67 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: 0.3s;
         }
         .phone:hover {
-            text-decoration: underline;
+            color: #fde047;
+            transform: scale(1.03);
         }
 
         .hero {
-            background: linear-gradient(135deg, #0b2b40 0%, #1a4a63 100%);
-            color: white;
-            padding: 60px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            padding: 70px 0 60px;
             text-align: center;
-            border-bottom: 5px solid #facc15;
+            border-bottom: 2px solid rgba(250, 204, 21, 0.15);
+            position: relative;
         }
-
+        .hero::before {
+            content: "🛞";
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.03;
+            top: -20px;
+            right: 10%;
+            transform: rotate(20deg);
+        }
         .hero h1 {
-            font-size: 42px;
+            font-size: 48px;
             margin-bottom: 15px;
+            background: linear-gradient(to right, #facc15, #fde047);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .hero p {
             font-size: 20px;
-            opacity: 0.9;
+            opacity: 0.8;
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin: 0 auto 35px;
+            color: #cbd5e1;
         }
 
         .btn {
             display: inline-block;
             background: #facc15;
-            color: #0b2b40;
+            color: #0f172a;
             font-weight: 700;
-            padding: 16px 40px;
+            padding: 18px 45px;
             border-radius: 50px;
             text-decoration: none;
             font-size: 20px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
+            box-shadow: 0 4px 25px rgba(250, 204, 21, 0.3);
             animation: pulse 2s infinite;
         }
-
         .btn:hover {
-            background: #ffe44d;
-            transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(250, 204, 21, 0.6);
+            background: #fde047;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 35px rgba(250, 204, 21, 0.5);
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(250, 204, 21, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
+            0% { box-shadow: 0 4px 25px rgba(250, 204, 21, 0.3); }
+            50% { box-shadow: 0 4px 45px rgba(250, 204, 21, 0.6); }
+            100% { box-shadow: 0 4px 25px rgba(250, 204, 21, 0.3); }
         }
 
         .section {
@@ -122,128 +140,348 @@
             font-weight: 700;
         }
         .section-title span {
-            background: #facc15;
-            padding: 0 12px;
-            border-radius: 8px;
+            background: linear-gradient(to right, #facc15, #fde047);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 4px;
         }
 
-        /* ----- Стили для таблиц с ценами ----- */
+        /* ===== ТАБЛИЦЫ ЦЕН ===== */
         .price-table-wrapper {
             overflow-x: auto;
             margin-bottom: 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(250, 204, 21, 0.08);
         }
 
         .price-table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
             font-size: 16px;
             min-width: 500px;
         }
 
         .price-table thead {
-            background: #0b2b40;
-            color: white;
+            background: linear-gradient(to right, #0f172a, #1e293b);
         }
 
         .price-table th {
-            padding: 15px 18px;
+            padding: 16px 18px;
             text-align: center;
             font-weight: 600;
             font-size: 15px;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
+            color: #facc15;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid rgba(250, 204, 21, 0.2);
         }
 
         .price-table td {
-            padding: 13px 18px;
+            padding: 14px 18px;
             text-align: center;
-            border-bottom: 1px solid #eef2f6;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: #e2e8f0;
         }
 
         .price-table tbody tr:hover {
-            background: #f8fafc;
+            background: rgba(250, 204, 21, 0.05);
         }
 
         .price-table tbody tr:last-child td {
             border-bottom: none;
         }
 
-        .price-table .highlight {
-            font-weight: 700;
-            color: #0b2b40;
+        .price-table td strong {
+            color: #facc15;
         }
 
         .price-note {
-            background: white;
+            background: rgba(30, 41, 59, 0.5);
             padding: 20px 25px;
             border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
             margin-top: 15px;
             font-size: 15px;
-            color: #334155;
-            border-left: 4px solid #facc15;
+            color: #94a3b8;
+            border-left: 3px solid #facc15;
+            backdrop-filter: blur(5px);
         }
         .price-note strong {
-            color: #0b2b40;
+            color: #e2e8f0;
         }
 
-        .map-container {
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            height: 350px;
-            background: #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #334155;
-            font-size: 20px;
-        }
-
+        /* ===== ФОРМА ===== */
         .form-box {
-            max-width: 550px;
+            max-width: 720px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 45px 40px 40px;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 1px solid rgba(250, 204, 21, 0.1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
         }
+
+        .form-box .field-group {
+            margin-bottom: 24px;
+        }
+
+        .form-box label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
         .form-box input {
             width: 100%;
             padding: 15px 20px;
-            margin-bottom: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
             font-size: 16px;
-            transition: 0.2s;
+            transition: 0.3s;
+            background: rgba(15, 23, 42, 0.6);
+            color: #e2e8f0;
         }
+
+        .form-box input::placeholder {
+            color: #64748b;
+        }
+
         .form-box input:focus {
             border-color: #facc15;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.3);
+            box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.1);
+            background: rgba(15, 23, 42, 0.8);
         }
-        .form-box button {
-            width: 100%;
-            padding: 16px;
-            background: #0b2b40;
+
+        /* ===== ВЫБОР ДАТЫ - ПЛИТКИ ===== */
+        .date-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .date-selector .selector-label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .date-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+            gap: 10px;
+        }
+
+        .date-grid.months {
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        }
+
+        .date-option {
+            padding: 12px 6px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.25s;
+            user-select: none;
+        }
+
+        .date-option:hover:not(.selected):not(.fully-booked) {
+            background: rgba(250, 204, 21, 0.08);
+            border-color: rgba(250, 204, 21, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .date-option.selected {
+            background: linear-gradient(135deg, #facc15, #fde047);
+            border-color: #facc15;
+            color: #0f172a;
+            box-shadow: 0 4px 25px rgba(250, 204, 21, 0.25);
+            transform: scale(1.04);
+        }
+
+        /* ДЕНЬ ПОЛНОСТЬЮ ЗАБИТ — КРАСНЫЙ */
+        .date-option.fully-booked {
+            background: rgba(220, 38, 38, 0.15);
+            border-color: rgba(220, 38, 38, 0.3);
+            color: #fca5a5;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .date-option.fully-booked::after {
+            content: "✕";
+            position: absolute;
+            font-size: 12px;
+            margin-left: 4px;
+            color: #dc2626;
+        }
+
+        .date-option.fully-booked:hover {
+            transform: none;
+        }
+
+        /* ===== ВРЕМЯ — ПЛИТКИ ===== */
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 14px 0 6px;
+        }
+
+        .time-option {
+            padding: 12px 4px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.25s;
+            user-select: none;
+            position: relative;
+        }
+
+        .time-option:hover:not(.booked) {
+            background: rgba(250, 204, 21, 0.08);
+            border-color: rgba(250, 204, 21, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .time-option.selected {
+            background: linear-gradient(135deg, #facc15, #fde047);
+            border-color: #facc15;
+            color: #0f172a;
+            box-shadow: 0 4px 25px rgba(250, 204, 21, 0.25);
+            transform: scale(1.02);
+        }
+
+        .time-option.booked {
+            background: rgba(220, 38, 38, 0.15);
+            border-color: rgba(220, 38, 38, 0.3);
+            color: #fca5a5;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .time-option.booked::after {
+            content: "✕";
+            position: absolute;
+            top: -8px;
+            right: -6px;
+            background: #dc2626;
             color: white;
+            font-size: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .time-option.booked:hover {
+            transform: none;
+        }
+
+        .time-hint {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin: 10px 0 4px;
+        }
+        .time-hint span {
+            color: #facc15;
+            font-weight: 600;
+        }
+
+        .form-box .btn-submit {
+            width: 100%;
+            padding: 18px;
+            margin-top: 24px;
+            background: linear-gradient(135deg, #facc15, #fde047);
+            color: #0f172a;
             border: none;
-            border-radius: 50px;
+            border-radius: 16px;
             font-size: 20px;
             font-weight: 700;
             cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .form-box .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 35px rgba(250, 204, 21, 0.3);
+        }
+
+        .form-box .form-footnote {
+            text-align: center;
+            margin-top: 16px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .form-box .form-footnote a {
+            color: #facc15;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(250, 204, 21, 0.3);
+        }
+
+        /* ===== ИНФО-БЛОКИ ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(5px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.04);
             transition: 0.3s;
         }
-        .form-box button:hover {
-            background: #1a4a63;
+        .info-card:hover {
+            border-color: rgba(250, 204, 21, 0.15);
+            transform: translateY(-4px);
+        }
+        .info-card .icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .info-card h4 {
+            font-size: 18px;
+            color: #e2e8f0;
+            margin-bottom: 6px;
+        }
+        .info-card p {
+            color: #94a3b8;
+            font-size: 15px;
         }
 
         .footer {
-            background: #0b2b40;
-            color: #94a3b8;
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            color: #64748b;
             text-align: center;
             padding: 30px 0;
             margin-top: 20px;
@@ -251,14 +489,29 @@
         .footer a {
             color: #facc15;
             text-decoration: none;
+            transition: 0.3s;
+        }
+        .footer a:hover {
+            color: #fde047;
         }
 
         @media (max-width: 600px) {
-            .hero h1 { font-size: 28px; }
+            .hero h1 { font-size: 30px; }
             .header-flex { flex-direction: column; text-align: center; }
             .phone { font-size: 20px; }
             .price-table { font-size: 14px; min-width: 400px; }
-            .price-table th, .price-table td { padding: 10px 10px; }
+            .section { padding: 40px 0; }
+
+            .form-box { padding: 30px 18px; }
+            .date-grid { grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); }
+            .date-grid.months { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
+            .time-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 400px) {
+            .time-grid { grid-template-columns: repeat(2, 1fr); }
+            .date-grid { grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); }
+            .date-grid.months { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -268,7 +521,7 @@
     <div class="container header-flex">
         <div class="logo">
             <span>⚡</span>У <span>Рафаэля</span>
-            <small>шиномонтаж</small>
+            <small>шиномонтаж в Затоне</small>
         </div>
         <a href="tel:+79297554585" class="phone">📞 +7 (929) 755-45-85</a>
     </div>
@@ -276,27 +529,50 @@
 
 <section class="hero">
     <div class="container">
-        <h1>Шиномонтаж за 30 минут 🚀</h1>
-        <p>Выезд к вам или работа на нашем СТО. Гарантия качества и честные цены.</p>
+        <h1>Шиномонтаж за 30 минут</h1>
+        <p>Выезд к вам или работа на нашем СТО в Затоне. Гарантия качества и честные цены.</p>
         <a href="#form" class="btn">📅 Записаться сейчас</a>
     </div>
 </section>
 
-<!-- ========== ПРАЙС-ЛИСТ ========== -->
+<!-- ===== ИНФО ===== -->
 <section class="section">
+    <div class="container">
+        <h2 class="section-title">О <span>нас</span></h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <span class="icon">🕒</span>
+                <h4>Режим работы</h4>
+                <p>Ежедневно с 09:00 до 18:00</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">📍</span>
+                <h4>Адрес</h4>
+                <p>Уфа, Затон, Ленинский р-н</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">🛠️</span>
+                <h4>Оборудование</h4>
+                <p>HAWEKA · Hofmann</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">💳</span>
+                <h4>Оплата</h4>
+                <p>Наличные · Карта · QR</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ПРАЙС ===== -->
+<section class="section" style="padding-top: 0;">
     <div class="container">
         <h2 class="section-title">Прайс-лист <span>на услуги</span></h2>
 
-        <!-- Таблица 1: Легковой автомобиль -->
-        <h3 style="margin-bottom: 12px; font-size: 22px; color: #0b2b40;">🚗 Легковой автомобиль — полный перекид</h3>
+        <h3 style="margin-bottom: 12px; font-size: 22px; color: #facc15;">🚗 Легковой — полный перекид</h3>
         <div class="price-table-wrapper">
             <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Радиус</th>
-                        <th>Цена (₽)</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Радиус</th><th>Цена (₽)</th></tr></thead>
                 <tbody>
                     <tr><td>13-14</td><td><strong>1 800</strong></td></tr>
                     <tr><td>15</td><td><strong>1 920</strong></td></tr>
@@ -309,16 +585,10 @@
             </table>
         </div>
 
-        <!-- Таблица 2: Кроссоверы -->
-        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #0b2b40;">🚙 Кроссоверы и внедорожники — полный перекид</h3>
+        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #facc15;">🚙 Кроссоверы / внедорожники — полный перекид</h3>
         <div class="price-table-wrapper">
             <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Радиус</th>
-                        <th>Цена (₽)</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Радиус</th><th>Цена (₽)</th></tr></thead>
                 <tbody>
                     <tr><td>15</td><td><strong>2 280</strong></td></tr>
                     <tr><td>16</td><td><strong>2 480</strong></td></tr>
@@ -334,99 +604,36 @@
             </table>
         </div>
 
-        <!-- Таблица 3: Детализация легковые -->
-        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #0b2b40;">🔧 Детализация услуг (легковые)</h3>
+        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #facc15;">🛠️ Дополнительные услуги</h3>
         <div class="price-table-wrapper">
             <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Радиус</th>
-                        <th>Шиномонтаж</th>
-                        <th>Балансировка</th>
-                        <th>Съём-установка</th>
-                        <th>Всего</th>
-                        <th>Итог</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>13-14</td><td>140</td><td>170</td><td>140</td><td>450</td><td><strong>1 800</strong></td></tr>
-                    <tr><td>15</td><td>150</td><td>180</td><td>150</td><td>480</td><td><strong>1 920</strong></td></tr>
-                    <tr><td>16</td><td>165</td><td>195</td><td>165</td><td>525</td><td><strong>2 100</strong></td></tr>
-                    <tr><td>17</td><td>180</td><td>210</td><td>180</td><td>570</td><td><strong>2 280</strong></td></tr>
-                    <tr><td>18</td><td>195</td><td>220</td><td>195</td><td>610</td><td><strong>2 440</strong></td></tr>
-                    <tr><td>19</td><td>210</td><td>240</td><td>210</td><td>660</td><td><strong>2 640</strong></td></tr>
-                    <tr><td>20</td><td>230</td><td>260</td><td>230</td><td>720</td><td><strong>2 880</strong></td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Таблица 4: Детализация кроссоверы -->
-        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #0b2b40;">🔧 Детализация услуг (кроссоверы/внедорожники)</h3>
-        <div class="price-table-wrapper">
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Радиус</th>
-                        <th>Шиномонтаж</th>
-                        <th>Балансировка</th>
-                        <th>Съём-установка</th>
-                        <th>Всего</th>
-                        <th>Итог</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>15</td><td>120</td><td>210</td><td>180</td><td>570</td><td><strong>2 280</strong></td></tr>
-                    <tr><td>16</td><td>130</td><td>230</td><td>195</td><td>620</td><td><strong>2 480</strong></td></tr>
-                    <tr><td>17</td><td>210</td><td>250</td><td>210</td><td>670</td><td><strong>2 680</strong></td></tr>
-                    <tr><td>18</td><td>225</td><td>270</td><td>225</td><td>720</td><td><strong>2 880</strong></td></tr>
-                    <tr><td>19</td><td>240</td><td>290</td><td>240</td><td>770</td><td><strong>3 080</strong></td></tr>
-                    <tr><td>20</td><td>255</td><td>310</td><td>255</td><td>820</td><td><strong>3 280</strong></td></tr>
-                    <tr><td>21</td><td>270</td><td>330</td><td>270</td><td>870</td><td><strong>3 480</strong></td></tr>
-                    <tr><td>22</td><td>290</td><td>350</td><td>290</td><td>930</td><td><strong>3 720</strong></td></tr>
-                    <tr><td>23</td><td>310</td><td>370</td><td>310</td><td>990</td><td><strong>3 960</strong></td></tr>
-                    <tr><td>24</td><td>330</td><td>390</td><td>330</td><td>1050</td><td><strong>4 200</strong></td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Дополнительные услуги -->
-        <h3 style="margin: 40px 0 12px; font-size: 22px; color: #0b2b40;">🛠️ Дополнительные услуги</h3>
-        <div class="price-table-wrapper">
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Услуга</th>
-                        <th>Цена (₽)</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Услуга</th><th>Цена (₽)</th></tr></thead>
                 <tbody>
                     <tr><td>Ремонт жгутом</td><td><strong>200</strong></td></tr>
                     <tr><td>Ремонт кордовой заплаткой</td><td><strong>600</strong></td></tr>
-                    <tr><td>Устранение негерметичности по ободу диска</td><td><strong>100</strong></td></tr>
+                    <tr><td>Устранение негерметичности</td><td><strong>100</strong></td></tr>
                     <tr><td>Ремонт универсальной заплаткой</td><td><strong>300</strong></td></tr>
                     <tr><td>Установка вентиля (черный)</td><td><strong>50</strong></td></tr>
-                    <tr><td>Обработка ступицы медной смазкой</td><td><strong>50</strong></td></tr>
-                    <tr><td>Run-flat и шины ниже 50 профиля <span style="color:#dc2626;">+</span></td><td><strong>150</strong></td></tr>
+                    <tr><td>Обработка ступицы смазкой</td><td><strong>50</strong></td></tr>
+                    <tr><td>Run-flat (шины ниже 50 профиля)</td><td><strong>+150</strong></td></tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Примечания -->
         <div class="price-note">
-            <p>📌 <strong>Подкачка</strong> — 25 рублей за колесо &nbsp;|&nbsp; <strong>Аренда домкрата</strong> — 100 рублей</p>
-            <p style="margin-top: 6px; font-size: 14px; color: #64748b;">* Цены указаны за полный комплекс работ. Действительны на 2026 год.</p>
+            <p>📌 <strong>Подкачка</strong> — 25 ₽ за колесо &nbsp;|&nbsp; <strong>Аренда домкрата</strong> — 100 ₽</p>
+            <p style="margin-top: 6px; font-size: 14px;">* Цены действительны на <strong>2026 год</strong></p>
         </div>
-
     </div>
 </section>
 
-<!-- ====== КАРТА ====== -->
-<section class="section">
+<!-- ===== КАРТА ===== -->
+<section class="section" style="padding-top: 0;">
     <div class="container">
         <h2 class="section-title">Мы <span>здесь</span></h2>
-        <a href="https://2gis.ru/ufa/geo/70000001080481052/55.848522,54.794684" target="_blank" style="display: block; border-radius: 24px; overflow: hidden; position: relative; height: 350px; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <a href="https://2gis.ru/ufa/geo/70000001080481052/55.848522,54.794684" target="_blank" style="display: block; border-radius: 24px; overflow: hidden; position: relative; height: 350px; text-decoration: none; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 1px solid rgba(250, 204, 21, 0.1);">
             <div style="width: 100%; height: 100%; background: url('https://static-maps.yandex.ru/1.x/?ll=54.794684,55.848522&z=16&l=map&size=600,350') center/cover no-repeat; display: flex; align-items: center; justify-content: center; transition: 0.3s;">
-                <div style="background: rgba(11, 43, 64, 0.85); padding: 30px 50px; border-radius: 20px; text-align: center; border: 2px solid #facc15; backdrop-filter: blur(4px);">
+                <div style="background: rgba(15, 23, 42, 0.9); padding: 30px 50px; border-radius: 20px; text-align: center; border: 2px solid #facc15; backdrop-filter: blur(8px);">
                     <span style="font-size: 48px;">📍</span>
                     <p style="color: white; font-size: 24px; font-weight: 700; margin-top: 10px;">Открыть в 2ГИС</p>
                     <p style="color: #facc15; font-size: 16px;">У Рафаэля, Затон</p>
@@ -436,34 +643,213 @@
     </div>
 </section>
 
-<!-- ====== ФОРМА ====== -->
+<!-- ===== ФОРМА ===== -->
 <section class="section" id="form">
     <div class="container">
-        <h2 class="section-title">Оставьте <span>заявку</span></h2>
+        <h2 class="section-title">Запись <span>онлайн</span></h2>
         <div class="form-box">
-            <form action="https://formsubmit.co/baktigareevislam@gmail.com" method="POST">
-                <input type="text" name="Имя" placeholder="Ваше имя" required>
-                <input type="tel" name="Телефон" placeholder="+7 (___) ___-__-__" required>
-                <input type="text" name="Автомобиль" placeholder="Автомобиль, например: Toyota Camry">
+            <form action="https://formsubmit.co/baktigareevislam@gmail.com" method="POST" id="bookingForm">
+                <div class="field-group">
+                    <label>👤 Ваше имя</label>
+                    <input type="text" name="Имя" placeholder="Например: Рафаэль" required>
+                </div>
+
+                <div class="field-group">
+                    <label>📞 Телефон</label>
+                    <input type="tel" name="Телефон" placeholder="+7 (___) ___-__-__" required>
+                </div>
+
+                <div class="field-group">
+                    <label>🚗 Автомобиль</label>
+                    <input type="text" name="Автомобиль" placeholder="Марка и модель" required>
+                </div>
+
+                <!-- ===== ВЫБОР ДАТЫ ===== -->
+                <div class="field-group">
+                    <label>📅 Выберите дату</label>
+                    <div class="date-selector">
+                        <div>
+                            <div class="selector-label">День</div>
+                            <div class="date-grid" id="dayGrid"></div>
+                        </div>
+                        <div>
+                            <div class="selector-label">Месяц</div>
+                            <div class="date-grid months" id="monthGrid"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="День" id="selectedDay" required>
+                    <input type="hidden" name="Месяц" id="selectedMonth" required>
+                    <div style="font-size: 12px; color: #64748b; margin-top: 8px;">Текущий год: 2026</div>
+                </div>
+
+                <!-- ===== ВЫБОР ВРЕМЕНИ ===== -->
+                <div class="field-group">
+                    <label>🕐 Выберите время</label>
+                    <div class="time-grid" id="timeGrid"></div>
+                    <div class="time-hint">⏳ Доступные слоты — <span>каждые 30 минут</span></div>
+                    <input type="hidden" name="Время" id="selectedTime" required>
+                </div>
+
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="Новая заявка с шиномонтажа У Рафаэля!">
+                <input type="hidden" name="_subject" value="Новая запись на шиномонтаж У Рафаэля!">
                 <input type="hidden" name="_template" value="table">
-                <button type="submit">✅ Перезвоните мне</button>
+
+                <button type="submit" class="btn-submit">✅ Записаться</button>
+                <div class="form-footnote">
+                    Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки данных</a>
+                </div>
             </form>
-            <p style="text-align: center; margin-top: 15px; color: #64748b; font-size: 14px;">Нажимая на кнопку, вы соглашаетесь с политикой обработки данных</p>
         </div>
     </div>
 </section>
 
 <footer class="footer">
     <div class="container">
-        <p>© 2026 У Рафаэля — Шиномонтаж с 9.00 до 18.00 в Уфе</p>
+        <p>© 2026 У Рафаэля — Шиномонтаж в Затоне, Уфа</p>
         <p style="margin-top: 5px;">
-            <a href="#">Политика конфиденциальности</a> | 
+            <a href="https://2gis.ru/ufa/geo/70000001080481052/55.848522,54.794684" target="_blank">2ГИС</a> &nbsp;|&nbsp;
             <a href="tel:+79297554585">+7 (929) 755-45-85</a>
         </p>
     </div>
 </footer>
+
+<script>
+    // ===== ЗАНЯТЫЕ СЛОТЫ (ДОБАВЛЯЙТЕ СВОИ) =====
+    // Формат: "День Месяц Время" (например: "5 Август 10:00")
+    const bookedSlots = [
+        // "5 Август 10:00",
+        // "7 Август 14:30"
+    ];
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const dayGrid = document.getElementById('dayGrid');
+        const monthGrid = document.getElementById('monthGrid');
+        const selectedDay = document.getElementById('selectedDay');
+        const selectedMonth = document.getElementById('selectedMonth');
+        const timeGrid = document.getElementById('timeGrid');
+        const selectedTime = document.getElementById('selectedTime');
+        let selectedTimeElement = null;
+        let currentDay = null;
+        let currentMonth = null;
+
+        const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+        // ---- ГЕНЕРАЦИЯ ДНЕЙ ----
+        for (let d = 1; d <= 31; d++) {
+            const div = document.createElement('div');
+            div.className = 'date-option';
+            div.textContent = d;
+            div.dataset.day = d;
+
+            div.addEventListener('click', function () {
+                if (this.classList.contains('fully-booked')) return;
+                document.querySelectorAll('#dayGrid .date-option').forEach(el => el.classList.remove('selected'));
+                this.classList.add('selected');
+                currentDay = this.dataset.day;
+                selectedDay.value = currentDay;
+                updateTimeSlots();
+            });
+
+            dayGrid.appendChild(div);
+        }
+
+        // ---- ГЕНЕРАЦИЯ МЕСЯЦЕВ ----
+        months.forEach(month => {
+            const div = document.createElement('div');
+            div.className = 'date-option';
+            div.textContent = month;
+            div.dataset.month = month;
+
+            div.addEventListener('click', function () {
+                document.querySelectorAll('#monthGrid .date-option').forEach(el => el.classList.remove('selected'));
+                this.classList.add('selected');
+                currentMonth = this.dataset.month;
+                selectedMonth.value = currentMonth;
+                updateTimeSlots();
+            });
+
+            monthGrid.appendChild(div);
+        });
+
+        // ---- ГЕНЕРАЦИЯ ВРЕМЕНИ ----
+        const times = [];
+        for (let h = 8; h <= 20; h++) {
+            for (let m = 0; m < 60; m += 30) {
+                if (h === 20 && m === 30) continue;
+                const hh = String(h).padStart(2, '0');
+                const mm = String(m).padStart(2, '0');
+                times.push(`${hh}:${mm}`);
+            }
+        }
+
+        function updateTimeSlots() {
+            const day = currentDay;
+            const month = currentMonth;
+            timeGrid.innerHTML = '';
+
+            if (!day || !month) {
+                // Если дата не выбрана — показываем все слоты серыми
+                times.forEach(time => {
+                    const div = document.createElement('div');
+                    div.className = 'time-option';
+                    div.textContent = time;
+                    div.style.opacity = '0.4';
+                    div.style.cursor = 'default';
+                    timeGrid.appendChild(div);
+                });
+                return;
+            }
+
+            let bookedCount = 0;
+
+            times.forEach(time => {
+                const div = document.createElement('div');
+                div.className = 'time-option';
+                div.textContent = time;
+                div.dataset.time = time;
+
+                const slotKey = `${day} ${month} ${time}`;
+                const isBooked = bookedSlots.includes(slotKey);
+
+                if (isBooked) {
+                    div.classList.add('booked');
+                    bookedCount++;
+                }
+
+                div.addEventListener('click', function () {
+                    if (this.classList.contains('booked')) return;
+
+                    if (selectedTimeElement) {
+                        selectedTimeElement.classList.remove('selected');
+                    }
+                    this.classList.add('selected');
+                    selectedTimeElement = this;
+                    selectedTime.value = this.dataset.time;
+                });
+
+                timeGrid.appendChild(div);
+            });
+
+            // ---- ПОМЕЧАЕМ ДЕНЬ КАК ПОЛНОСТЬЮ ЗАБИТЫЙ ----
+            const totalSlots = times.length;
+            const dayElements = document.querySelectorAll('#dayGrid .date-option');
+            dayElements.forEach(el => {
+                const dayNum = el.dataset.day;
+                if (dayNum === day) {
+                    if (bookedCount === totalSlots) {
+                        el.classList.add('fully-booked');
+                        el.classList.remove('selected');
+                    } else {
+                        el.classList.remove('fully-booked');
+                    }
+                }
+            });
+        }
+
+        // Первая отрисовка (пустая)
+        updateTimeSlots();
+    });
+</script>
 
 </body>
 </html>
