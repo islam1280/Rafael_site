@@ -226,7 +226,7 @@
     <div class="container">
         <h2 class="section-title">Запись <span>онлайн</span></h2>
         <div class="form-box">
-            <form action="https://script.google.com/macros/s/AKfycbxMuCALL5FXoSBSGZj--94-FWJbHrrxX85erwslDx3Cf9ud3NTXyUvAGKGd5V3LqZuz/exec" method="POST" id="bookingForm">
+            <form action="https://script.google.com/macros/s/AKfycbxBrdyxJvuQyJniMjVuShnwbcny2fSiiII-qqJpNQdZagpUbZBgdJSiTtghbQcnSDbJ/exec" method="POST" id="bookingForm">
                 <div class="field-group">
                     <label>👤 Ваше имя</label>
                     <input type="text" name="Имя" placeholder="Например: Рафаэль" required>
@@ -291,7 +291,7 @@
 </div>
 
 <script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxMuCALL5FXoSBSGZj--94-FWJbHrrxX85erwslDx3Cf9ud3NTXyUvAGKGd5V3LqZuz/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBrdyxJvuQyJniMjVuShnwbcny2fSiiII-qqJpNQdZagpUbZBgdJSiTtghbQcnSDbJ/exec';
     let bookedSlots = [];
 
     async function loadBookedSlots() {
@@ -369,12 +369,10 @@
             monthGrid.appendChild(div);
         });
 
-        // ===== ИСПРАВЛЕННАЯ ГЕНЕРАЦИЯ ВРЕМЕНИ (С НУЛЁМ) =====
         const times = [];
         for (let h = 8; h <= 20; h++) {
             for (let m = 0; m < 60; m += 30) {
                 if (h === 20 && m === 30) continue;
-                // Теперь время всегда будет с двумя цифрами: 08:00, 09:00 и т.д.
                 const hh = String(h).padStart(2, '0');
                 const mm = String(m).padStart(2, '0');
                 times.push(`${hh}:${mm}`);
