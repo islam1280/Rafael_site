@@ -453,6 +453,8 @@
             const slotKey = `${day} ${month} ${time}`;
             if (!bookedSlots.includes(slotKey)) {
                 bookedSlots.push(slotKey);
+                // ===== НЕМЕДЛЕННОЕ ОБНОВЛЕНИЕ СЛОТОВ =====
+                updateTimeSlots();
             }
         });
     });
